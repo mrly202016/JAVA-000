@@ -1,6 +1,5 @@
 package homework;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,7 +14,7 @@ public class HelloClassLoader extends ClassLoader {
 
     public static void main(String[] args) {
         try {
-            Class clazz=new HelloClassLoader().findClass("Hello.xlass");
+            Class<?> clazz=new HelloClassLoader().findClass("Hello.xlass");
             Method hello=clazz.getDeclaredMethod("hello");
             hello.invoke(clazz.newInstance());
         } catch (ClassNotFoundException e) {
@@ -35,13 +34,14 @@ public class HelloClassLoader extends ClassLoader {
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         InputStream is=null;
         try{
-            is=getResourceAsStream(name);
+            is=this.getClass().getResourceAsStream(name);
             byte[] bytes=new byte[is.available()];
             is.read(bytes);
             for(int i=0;i<bytes.length;i++) bytes[i]= (byte) (bytes[i]^0xff);
             is.close();
             return defineClass(name.substring(0,name.indexOf(".")),bytes,0,bytes.length);
         }catch (Exception e){
+            e.printStackTrace();
             return null;
         }
     }
