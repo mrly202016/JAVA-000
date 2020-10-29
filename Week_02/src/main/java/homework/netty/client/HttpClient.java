@@ -21,7 +21,6 @@ public class HttpClient {
         HttpGet httpGet = new HttpGet("http://localhost:8801");
         CloseableHttpResponse response1 = httpclient.execute(httpGet);
         try {
-            System.out.println(response1.getStatusLine());
             HttpEntity entity1 = response1.getEntity();
             EntityUtils.consume(entity1);
         } finally {
