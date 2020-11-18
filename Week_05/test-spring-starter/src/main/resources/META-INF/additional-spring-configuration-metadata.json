@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "test.starter.props",
+      "type": "java.util.Properties",
+      "sourceType": "test.starter.prop.DomainPropertiesConfiguration",
+      "description": "Customize test starter properties."
+    }
+  ]
+}
