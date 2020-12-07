@@ -22,7 +22,6 @@ import java.sql.SQLException;
 public class ShardingDsConfig {
     @Bean
     public DataSource shardingDataSource() throws IOException, SQLException {
-//        return YamlShardingSphereDataSourceFactory.createDataSource(new File(ShardingDsConfig.class.getResource("/META-INF/replica-query.yaml").getFile()));
         return YamlShardingSphereDataSourceFactory.createDataSource(new File(ShardingDsConfig.class.getResource("/META-INF/sharding-databases-tables.yaml").getFile()));
     }
 
